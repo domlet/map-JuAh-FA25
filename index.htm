@@ -13,6 +13,9 @@
       padding: 0;
     }
 
+    img {
+      max-width: 200px;
+    }
     #map {
       position: absolute;
       top: 0;
@@ -20,16 +23,8 @@
       width: 100%;
     }
   </style>
+
 </head>
-
-<!-- 
-1) Urban adventure Camps =-122.21252300758238,37.84036198196683, 
-
-2) UC Berkley Recreation =37.87532944403853, -122.2623048092445
-
-3) Reach ashland center = 37.70229062714146, -122.11491510924446
-
- -->
 
 <body>
   <div id="map"></div>
@@ -38,7 +33,7 @@
     const map = new mapboxgl.Map({
       container: 'map',
       // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      style: 'mapbox://styles/mapbox/outdoors-v12',
+      style: 'mapbox://styles/xx-ame/cmgsgvzse007g01sv3wbfhp56',
       center: [-122.21252300758238,37.84036198196683],
       zoom: 10
     });
@@ -58,6 +53,7 @@
               "properties": {
                 'name': "My first camping trip",
                 'description': "I went camping here",
+                'image': "images/camping.jpg"
               }
             },
             {
@@ -69,6 +65,7 @@
               "properties": {
                 'name': "My first time at UC Berkeley",
                 'description': "I went boating here",
+                'image': "images/berkeley-sather-gate.jpg"
               }
             },
             {
@@ -80,8 +77,9 @@
               "properties": {
                 'name': "My first time at Reach Ashland Center",
                 'description': "I went running here",
+                'image': "images/reach-ayc1_resized.jpg"
               }
-            }
+            },
           ]
         }
       });
@@ -96,7 +94,7 @@
         },
         'filter': ['==', '$type', 'Point']
       });
-    });
+    })
 
     map.addInteraction('popup', {
       type: 'click',
@@ -106,10 +104,11 @@
         const coordinates = e.feature.geometry.coordinates.slice();
         const name = e.feature.properties.name;
         const description = e.feature.properties.description;
+        const image = e.feature.properties.image;
 
         new mapboxgl.Popup()
           .setLngLat(coordinates)
-          .setHTML("<br><strong>" + name + "</strong><br/>" + description)
+          .setHTML("<img src='" + image + "'><br><strong>" + name + "</strong><br/>" + description)
           .addTo(map);
       }
     });
