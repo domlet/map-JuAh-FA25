@@ -5,7 +5,7 @@
 Users can...
 1. **Tap on the points shown in the map**, by tapping on the red dots on the map it will show you a picture of the place. 
 2. **Explore place** by tapping on the screen you get also see what was done there.
-
+![alt text](images/demo.gif)
 
 ## Why did I build this?
 
